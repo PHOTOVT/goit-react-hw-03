@@ -1,14 +1,3 @@
-.contactItem {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  gap: 50px;
-  padding: 40px 20px 40px;
-  border: 2px solid grey;
-  border-radius: 10px;
-}
-
 .contactItemContainer {
   display: flex;
   flex-direction: column;

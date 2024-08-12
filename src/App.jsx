@@ -6,14 +6,14 @@ import { nanoid } from "nanoid";
 import ContactForm from "./components/ContactForm/ContactForm";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactList/ContactList";
-import savedContacts from "../contacts.json";
+import initialContacts from "../contacts.json";
 
 function App() {
   const [contacts, setContacts] = useState(() => {
     const itemFromLocalStorage = localStorage.getItem("contacts");
     return itemFromLocalStorage
       ? JSON.parse(itemFromLocalStorage)
-      : savedContacts;
+      : initialContacts;
   });
   const [filter, setFilter] = useState("");
 
@@ -30,8 +30,8 @@ function App() {
   };
 
   const onDeleteContact = (contactId) => {
-    setContacts((prevContacts) =>
-      prevContacts.filter((contact) => contact.id !== contactId)
+    setContacts((previousContacts) =>
+      previousContacts.filter((contact) => contact.id !== contactId)
     );
   };
 
@@ -48,7 +48,7 @@ function App() {
       <ContactForm onAddContact={onAddContact} />
       <SearchBox filter={filter} handleFilter={handleFilter} />
       <ContactList
-        filteredContacts={filteredContacts}
+        savedContacts={filteredContacts}
         onDeleteContact={onDeleteContact}
       />
     </div>
