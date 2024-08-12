@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
+
+import { nanoid } from "nanoid";
+
+import ContactForm from "./components/ContactForm/ContactForm";
+import SearchBox from "./components/SearchBox/SearchBox";
+import ContactList from "./components/ContactList/ContactList";
+import savedContacts from "../contacts.json";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [contacts, setContacts] = useState(() => {
+    const itemFromLocalStorage = localStorage.getItem("contacts");
+    return itemFromLocalStorage
+      ? JSON.parse(itemFromLocalStorage)
+      : savedContacts;
+  });
+  const [filter, setFilter] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
+
+  const onAddContact = (newContact) => {
+    const fullContact = {
+      ...newContact,
+      id: nanoid(),
+    };
+    setContacts([fullContact, ...contacts]);
+  };
+
+  const onDeleteContact = (contactId) => {
+    setContacts((prevContacts) =>
+      prevContacts.filter((contact) => contact.id !== contactId)
+    );
+  };
+
+  const handleFilter = (event) => {
+    setFilter(event.target.value);
+  };
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>Phonebook</h1>
+      <ContactForm onAddContact={onAddContact} />
+      <SearchBox filter={filter} handleFilter={handleFilter} />
+      <ContactList
+        filteredContacts={filteredContacts}
+        onDeleteContact={onDeleteContact}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;

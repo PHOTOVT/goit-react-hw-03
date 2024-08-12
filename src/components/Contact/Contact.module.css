@@ -1,0 +1,44 @@
+.contactItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 50px;
+  padding: 40px 20px 40px;
+  border: 2px solid grey;
+  border-radius: 10px;
+}
+
+.contactItemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.contactItemContainer span:nth-child(1) {
+  margin-bottom: 5px;
+}
+
+.contactItemInfo {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.IoPersonOutline,
+.HiOutlinePhone {
+  margin-right: 9px;
+}
+
+.contactButton {
+  font-size: 20px;
+  font-weight: 600;
+  background: crimson;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.contactButton:hover,
+.contactButton:focus {
+  border-color: crimson;
+  color: crimson;
+  background: none;
+}

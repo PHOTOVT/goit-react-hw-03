@@ -1,0 +1,49 @@
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 80px;
+}
+
+.contactFormLabel {
+  display: block;
+  text-align: left;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.contactFormField {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  appearance: none;
+  padding: 12.5px 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: black;
+  background: none;
+}
+
+.contactFormButton {
+  font-size: 20px;
+  font-weight: 600;
+  color: lavender;
+  background: grey;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.contactFormButton:hover,
+.contactFormButton:focus {
+  border-color: grey;
+  color: grey;
+  background: none;
+}
+
+.contactFormError {
+  color: crimson;
+}
