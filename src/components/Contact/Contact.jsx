@@ -1,7 +1,6 @@
-import css from "./Contact.module.css";
-
 import { IoPersonOutline } from "react-icons/io5";
 import { HiOutlinePhone } from "react-icons/hi2";
+import css from "./Contact.module.css";
 
 const Contact = ({ id, name, number, onDeleteContact }) => {
   return (

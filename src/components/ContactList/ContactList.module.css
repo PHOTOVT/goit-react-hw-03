@@ -13,6 +13,19 @@
   justify-content: space-around;
   gap: 50px;
   padding: 40px 20px 40px;
-  border: 2px solid grey;
+  border: 2px solid black;
   border-radius: 10px;
+}
+
+.contactListItem:hover {
+  border-color: navy;
+  box-shadow: 0 0 8px rgba(0, 0, 128, 0.5);
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+@media (max-width: 767px) {
+  .contactListItem {
+    max-width: 767px;
+  }
 }
